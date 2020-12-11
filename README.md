@@ -27,3 +27,6 @@ Change #load to add some more nuget packages – run.fsx still flies!
 
 ## Why? 
 Its really really fast: The feedback-loop is as fast as inside a repl.
+
+## Caveats
+Everything you do is kept inside the fsi session. variables will not be cleaned up, so there will be ghost hangig around like in the repl. This is  of course solveable, but then the session have to restart and the loop will be slow(er) again.
