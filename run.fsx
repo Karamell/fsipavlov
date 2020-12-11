@@ -2,16 +2,14 @@
 open Expecto
 open Expecto.Flip
 
-let tester = 
+let tests = 
     testList "tests" [
-        test "Sannhet" {
-            Expect.isTrue "Forventa sannhet" true
+        test "Passing test" {
+            Expect.isTrue "Expected truth" true
         }
-        test "Hva syns du om dette?" {
-            Expect.isFalse "Feil eller?" true
-        }   
-        test "Hva nå da? " { Expect.isNotNull "Det var jo null!" null}
-        test "Hei!" { Expect.isNotNull "Det var jo null!" null}
+        test "Failing test " {
+            Expect.isNotNull "Expected anything" null
+        }
     ]
 
-runTests { defaultConfig with verbosity = Logging.Debug } tester
+runTests { defaultConfig with verbosity = Logging.Debug } tests
