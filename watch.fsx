@@ -23,7 +23,9 @@ module Session =
 
     let eval(scriptFile) =
         try
-            let lines = IO.File.ReadAllLines(scriptFile) |> Array.filter (fun s -> s.StartsWith("#load") |> not)
+            let lines = 
+                IO.File.ReadAllLines(scriptFile) 
+                |> Array.filter (fun s -> s.StartsWith($"#load \"{loadScript}\"") |> not)
             fsiSession.EvalInteraction (String.Join('\n', lines))
         with ex ->
             printfn "%s" (sbErr.ToString())
@@ -39,7 +41,7 @@ let handleWatcherEvents (e:IO.FileSystemEventArgs) =
     elif fi.Name = loadScript then
         Session.fsiSession.EvalScriptNonThrowing e.FullPath |> ignore
     else
-        Session.eval(e.FullPath) |> ignore
+        Session.eval(runScript) |> ignore
 
 let watcher = 
     let srcDir = __SOURCE_DIRECTORY__
