@@ -1,4 +1,4 @@
-# fsipavlov
+# fsiPavlov
 Superfast watcher for fsi.
 
 This is an idea I got when solving Advent of Code 2020. I wanted to run unit tests as fast as possible.
